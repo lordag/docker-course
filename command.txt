@@ -1,0 +1,154 @@
+Create image
+
+    >> docker build .
+
+Create image with the tag
+
+    >> docker build -t [name]:[tag] .
+
+
+Run image, start a new container
+
+    >> docker run [image ID]
+
+
+Run image with port (-p)
+
+    >> docker run -p 3000:3000 [image ID or Name]
+
+    // Start docker Container not in detach mode (not in background)
+
+    >> docker run -p 3000:3000 -d [image ID]
+
+    // Start docker container in detach mode (in background)
+
+Run Image and remove container when image is stopped (-rm)
+
+    >> docker run -p 3000:3000 -d -rm [image ID]
+
+
+Run Image and give name to the container (--name)
+
+    >> docker run -p 3000:3000 -d -rm --name [container name] [image ID]
+
+Run image using the tag instead of the ID
+
+    >> docker run -p 3000:3000 -d -rm --name [container name] [name]:[tag]
+
+
+Inspect the image in order to check all info
+
+    >> docker image inspect [Image ID]
+
+List all images
+
+    >> docker images
+
+Remove images
+
+    In order to remove Image you need to remove all associated containers , also the stopped containers
+
+    Remove single image
+
+    >> docker rmi [image ID]
+
+    Remove some images
+
+    >> docker rmi [image ID] [image ID] [image ID] ecc...
+
+    Remove all images
+
+    >> docker image prune 
+
+    Remove all image + tagged images
+
+    >> docker image prune -a
+
+Make a clone of exixting image and rename tag and name of the image (tag)
+
+    >> docker tag [nome-current:tag-current] [nome-new:tag-new] 
+
+
+Push image tu docker hub
+
+    The first time you need to login
+    >> docker login
+
+    >> docker push [name]:[tag]
+
+Pull images from docker hub
+
+    >> docker pull [name]:[tag]
+
+
+Attach to running container in order to check the output
+
+    docker attach [Container ID or Name] 
+
+List running Container
+
+    >> docker ps
+
+List all Container , also the stopped
+
+    >> docker ps -a
+
+Start existing Container
+
+    // Check the list of stopped Containers with >> docker ps -a
+    >> docker start [Containe ID or Name]
+    // Docker Container start in background use >> docker ps , to check 
+
+    // To restart container in attach mode (not in background)
+    >> docker start -a [Containe ID or Name]
+
+Stop Container
+
+    >> docker stop [Container ID]
+
+Contaner Logs
+
+    // Check only last Logs
+
+    >> docker logs [Container Name]
+
+    // Watch current logs
+
+    >> docker logs -f [Container Name]
+
+Remove Containers
+
+    First need to stop the running container! if the container we want to delete is running
+
+    Remove single container 
+
+    >> docker rm [Container ID or Name]
+
+    Remove some Containers
+
+    >> docker rm [Container ID or Name] [Container ID or Name] [Container ID or Name] ecc...
+
+    Remove all stopped containers 
+
+    >> docker container prune 
+
+
+Copy files from and to the running container
+
+    From local machine to the container
+    >> docker cp [file or folder path] [Image name]:[destination path in the container]
+
+    From Container to local machine
+    >> docker cp [Image name]:[files path in the container] [file or folder path in local machine]
+
+
+Interactive mode
+    Using the commands below is possible run docker container interactively
+
+    The first time , after the build, use the commands below
+
+    >> docekr run -it [docker ID or Name]
+
+    In order to start existibg docker container interactively
+
+    >> docker start -a -i [docker ID or Name]
